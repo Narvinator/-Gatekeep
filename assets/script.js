@@ -155,6 +155,9 @@ function getTopArtist(token) {
     request.setRequestHeader("Authorization", "Bearer " + token);
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
+
+    request.send(null);
+    
     console.log(token);
 
     // check repsonses
