@@ -172,7 +172,11 @@ function checkArtistResponse() {
 
         // aprse data to get objects
         var top_artist = JSON.parse(this.responseText);
-        console.log(top_artist.items[0].name);
+
+        // list out top 3 artist 
+        top_artist.items.forEach(element => {
+            console.log(element.name);
+        });
     } else {
         // bad req
         console.log(this.responseText);
