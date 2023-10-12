@@ -22,7 +22,7 @@ localStorage.setItem("client_secret", client_secret);
 // const endpoints
 const authorize_url = "https://accounts.spotify.com/authorize";
 const token_url = "https://accounts.spotify.com/api/token";
-const top_artist_url = "https://api.spotify.com/v1/me/top/artists";
+const top_artist_url = "https://api.spotify.com/v1/me/top";
 
 var redirectURL = "";
 
@@ -47,6 +47,9 @@ function init() {
         // parse redirect url to get returned code 
         var code = parseRedirect();
 
+        // clean url after I get the code needed
+        window.history.pushState("", "", redirect_URI);
+        
         // set up queries for get req 
         let url = `&grant_type=authorization_code&code=${code}&redirect_uri=${encodeURI(redirect_URI)}`
 
@@ -129,6 +132,7 @@ function checkResponse() {
         }
 
         // get top artist 
+        var type = "artist"
         getTopArtist(access_token);
     }
     else {
@@ -138,5 +142,9 @@ function checkResponse() {
 }
 
 // func to get top artist 
-
+function getTopArtist(type) {
+    var req = new XMLHttpRequest();
+    req.open("GET", top_artist_url, true);
+    req.send(type)
+}
 
