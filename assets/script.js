@@ -1,6 +1,8 @@
 // mobile menu
 const burgerIcon = document.querySelector("#burger");
 const navbarMenu = document.querySelector("#nav-links");
+
+// hooks
 const artistPhoto = document.getElementById("artist-photo");
 const artistName = document.getElementById("artist-name");
 
@@ -18,6 +20,7 @@ var redirect_URI = "http://127.0.0.1:5500/index.html";
 var client_id = "a6e8b54904ef4eba84907002452c0ba0";
 var client_secret = "65c09d5e68ca4d0a8439a607c8b7e44c";
 
+// store in mem
 localStorage.setItem("client_id", client_id);
 localStorage.setItem("client_secret", client_secret);
 
@@ -157,7 +160,7 @@ function getTopArtist(token) {
     request.setRequestHeader("Authorization", "Bearer " + token);
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-
+    // get req 
     request.send(null);
 
     //console.log(token);
@@ -180,8 +183,10 @@ function checkArtistResponse() {
             console.log(element.name);
         });
 
+        // edit inner html to have img and put artist img with alt 
         artistPhoto.innerHTML = `<img class="artist-photo" src="${top_artist.items[0].images[0].url}" alt="${top_artist.items[0].name} photo">`;
 
+        // edit inner text to store name of artist 
         artistName.innerText = top_artist.items[0].name
     } else {
         // bad req
