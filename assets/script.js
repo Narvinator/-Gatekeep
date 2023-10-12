@@ -22,7 +22,7 @@ localStorage.setItem("client_secret", client_secret);
 // const endpoints
 const authorize_url = "https://accounts.spotify.com/authorize";
 const token_url = "https://accounts.spotify.com/api/token";
-const top_artist_url = "https://api.spotify.com/v1/me/top/artists";
+const top_artist_url = "https://api.spotify.com/v1/me/top/artists?limit=3&offset=0";
 
 var redirectURL = "";
 
@@ -115,7 +115,7 @@ function checkTokenResponse() {
 
         // parse data
         var token_info = JSON.parse(this.responseText);
-        console.log(token_info);
+        //console.log(token_info);
 
         // set new tokens 
         access_token = token_info.access_token;
@@ -157,8 +157,8 @@ function getTopArtist(token) {
 
 
     request.send(null);
-    
-    console.log(token);
+
+    //console.log(token);
 
     // check repsonses
     request.onload = checkArtistResponse;
@@ -172,7 +172,7 @@ function checkArtistResponse() {
 
         // aprse data to get objects
         var top_artist = JSON.parse(this.responseText);
-        console.log(top_artist);
+        console.log(top_artist.items[0].name);
     } else {
         // bad req
         console.log(this.responseText);
