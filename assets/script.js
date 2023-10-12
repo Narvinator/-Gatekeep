@@ -19,6 +19,7 @@ var client_secret = "65c09d5e68ca4d0a8439a607c8b7e44c";
 // const for first part of auth url
 const authorize_url = "https://accounts.spotify.com/authorize";
 const token_url = "https://accounts.spotify.com/api/token";
+const top_artist_url = "https://api.spotify.com/v1/me/top/artists";
 
 var redirectURL = "";
 
@@ -96,6 +97,33 @@ function getTokenRequest(url) {
 
     // feed response to check repsonse 
     req.onload = checkResponse;
+}
+
+// func to check responses 
+function checkResponse() {
+
+    // successful req
+    if(this.status == 200){
+
+        // parse data
+        var token_info = JSON.parse(this.responseText);
+        console.log(token_info);
+
+        // set new tokens 
+        access_token = token_info.access_token;
+        refresh_token = token_info.refresh_token;
+
+        // save tokens to storage 
+        localStorage.setItem("access_token", access_token);
+        localStorage.setItem("refresh_token", refresh_token);
+
+        // refresh at init 
+        init();
+    }
+    else {
+        // bad req 
+        console.log(this.responseText);
+    }
 }
 
 
