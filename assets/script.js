@@ -16,7 +16,7 @@ var redirect_URI = "http://127.0.0.1:5500/index.html";
 var client_id = "a6e8b54904ef4eba84907002452c0ba0";
 var client_secret = "65c09d5e68ca4d0a8439a607c8b7e44c";
 
-// const for first part of auth url
+// const endpoints
 const authorize_url = "https://accounts.spotify.com/authorize";
 const token_url = "https://accounts.spotify.com/api/token";
 const top_artist_url = "https://api.spotify.com/v1/me/top/artists";
@@ -46,7 +46,7 @@ function init() {
     let url = `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURI(redirect_URI)}`
     url += `&client_id=${client_id}client_secret=${client_secret}`
 
-    // put all tog in req 
+    // put all tog in req
     getTokenRequest(url);
 }
 
