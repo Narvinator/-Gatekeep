@@ -19,6 +19,11 @@ body {
     background-image: url(./hero-image.jpg)
 }
 
+.blur {
+  position: relative;
+  box-shadow: 0 0 6px 5px #33c583;
+}
+
 .marquee-wrapper {
     position: relative;
     display: flex;
