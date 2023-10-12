@@ -7,6 +7,10 @@ h2 {
   font-size: 2rem;
 }
 
+.content h4 {
+  margin-bottom: .5rem;
+}
+
 /* class selectors */
 .bulma-overlay-mixin {
   @include overlay(1.5rem);
@@ -95,6 +99,10 @@ h2 {
 
 .marquee-wrapper:hover .scrollingX {
   animation-play-state: paused;
+}
+
+.box {
+  padding: .7rem;
 }
 
 /* id selectors */
