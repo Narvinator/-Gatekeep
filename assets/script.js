@@ -25,11 +25,13 @@ localStorage.setItem("client_id", client_id);
 localStorage.setItem("client_secret", client_secret);
 
 // const endpoints
+// spotify
 const authorize_url = "https://accounts.spotify.com/authorize";
 const token_url = "https://accounts.spotify.com/api/token";
 const top_artist_url = "https://api.spotify.com/v1/me/top/artists?limit=3&offset=0";
 
-
+// youtube
+const youtube_url = "https://www.googleapis.com/youtube/v3/search";
 const youtube_API_key = "AIzaSyBJtFp0GmTRzERQ9HotaSFepsZfwuDJ0OQ";
 
 var redirectURL = "";
@@ -193,6 +195,8 @@ function checkArtistResponse() {
 
         // edit inner text to store name of artist 
         artistName.innerText = top_artist.items[0].name
+
+        getUnreleased(top_artist.items[0].name);
     } else {
         // bad req
         console.log(this.responseText);
