@@ -23,4 +23,19 @@ const authorize_url = "https://accounts.spotify.com/authorize";
 function requestAuthorization(){
 
     console.log("clickkkk");
+
+    // store for later
+    localStorage.setItem("client_id", client_id);
+    localStorage.getItem("client_secret", client_secret);
+
+    // build url (add on parameters)
+    let url = authorize_url;
+    url += "?client_id=" + client_id;
+    url += "&response_type=code";
+    url += "&redirect_uri=" + encodeURI(redirect_URI);
+    url += "&show_dialog=true";
+    url += "&scope=user-top-read";
+
+    // assign ref link to url
+    window.location.href = url;
 }
