@@ -10,6 +10,11 @@ body {
     padding: 1em;
   }
 
+.button:hover {
+  background-color: #33c583;
+  transform: translateY(-.09rem);
+}
+
 .hero {
     background-image: url(./hero-image.jpg)
 }

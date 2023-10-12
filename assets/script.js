@@ -7,3 +7,4 @@ burgerIcon.addEventListener('click', (event) => {
     event.preventDefault();
 });
 
+
