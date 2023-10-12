@@ -236,3 +236,59 @@ function getUnreleased(artist) {
     // check repsonse 
     req.onload = checkUnreleasedResponse;
 }
+
+// func to check response
+function checkUnreleasedResponse() {
+    // successful call
+    if(this.status == 200) {
+        //console.log(this.responseText);
+
+        //console.log("woohoo");\
+
+        // var to store data
+        var videos = JSON.parse(this.responseText);
+
+        // first video 
+        //console.log(videos.items[0].snippet.thumbnails.default.url);
+        //console.log(videos);
+        // console.log(videos.items[0].id.videoId);
+        // console.log(videos.items[0].snippet.title);
+        // getting title
+        var name_one = videos.items[0].snippet.title;
+
+        //setting title
+        song_title_1.innerText = name_one;
+
+        // setting img
+        song_photo_1.innerHTML = `<img class="artist-photo" src="${videos.items[0].snippet.thumbnails.default.url}">`
+
+
+        // second video 
+        // console.log(videos.items[1].id.videoId);
+        // console.log(videos.items[1].snippet.title);
+        // getting title
+        var name_two = videos.items[1].snippet.title;
+
+        //setting title
+        song_title_2.innerText = name_two;
+
+        // setting img
+        song_photo_2.innerHTML = `<img class="artist-photo" src="${videos.items[1].snippet.thumbnails.default.url}">`
+
+
+        // third video 
+        // console.log(videos.items[2].id.videoId);
+        // console.log(videos.items[2].snippet.title);
+        // getting title
+        var name_three = videos.items[2].snippet.title;
+
+        //setting title
+        song_title_3.innerText = name_three;
+
+        // setting img
+        song_photo_3.innerHTML = `<img class="artist-photo" src="${videos.items[2].snippet.thumbnails.default.url}">` 
+    } else {
+        // bad req
+        console.log("awww");
+    }
+}
