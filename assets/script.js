@@ -24,7 +24,7 @@ const top_artist_url = "https://api.spotify.com/v1/me/top/artists";
 var redirectURL = "";
 
 // request auth func
-function requestAuthorization(){
+function requestAuthorization() {
 
     console.log("clickkkk");
 
@@ -39,20 +39,23 @@ function requestAuthorization(){
 // init func
 function init() {
 
-    // parse redirect url to get returned code 
-    var code = parseRedirect();
+    // make sure its on redirect
+    if (window.location.search.length > 0) {
+        // parse redirect url to get returned code 
+        var code = parseRedirect();
 
-    // set up queries for get req 
-    let url = `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURI(redirect_URI)}`
-    url += `&client_id=${client_id}client_secret=${client_secret}`
+        // set up queries for get req 
+        let url = `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURI(redirect_URI)}`
+        url += `&client_id=${client_id}client_secret=${client_secret}`
 
-    // put all tog in req
-    getTokenRequest(url);
+        // put all tog in req 
+        getTokenRequest(url);
+    }
 }
 
 // func to parse redirect url and get code 
 function parseRedirect() {
-    
+
     // declare code var
     var code = null;
 
@@ -60,7 +63,7 @@ function parseRedirect() {
     let url = window.location.search;
 
     // make sure theres queries 
-    if(url.length > 0) {
+    if (url.length > 0) {
 
         // url search var 
         let query = new URLSearchParams(url);
@@ -83,7 +86,7 @@ function getTokenRequest(url) {
     var req = new XMLHttpRequest();
 
     // open req 
-    req.open("POST", token_url, false);
+    req.open("POST", token_url, true);
 
     // headers for post req
     req.setRequestHeader("Authorization", `Basic ${btoa(`${client_id} : ${client_secret}`)}`);
@@ -103,7 +106,7 @@ function getTokenRequest(url) {
 function checkResponse() {
 
     // successful req
-    if(this.status == 200){
+    if (this.status == 200) {
 
         // parse data
         var token_info = JSON.parse(this.responseText);
