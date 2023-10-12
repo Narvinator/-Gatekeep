@@ -1,14 +1,6 @@
 body {
     background-color: black;
 }
-.bulma-overlay-mixin {
-    @include overlay(1.5rem);
-    background-color: darkorange;
-    border-radius: 0.25em;
-    color: white;
-    opacity: 0.9;
-    padding: 1em;
-  }
 
 .hero {
     background-image: url(./hero-image.jpg)
@@ -61,6 +53,10 @@ body {
     line-height: 20px;
     margin-bottom: 1.2rem;
   }
+  .scrollingX {
+    animation: scroll 30s linear infinite;
+  }
+  
   @media (max-width: 1024px) {
     .marquee-wrapper {
       overflow: auto;
@@ -74,9 +70,9 @@ body {
   }
   @keyframes scroll {
     from {
-      transform: translateX(0);
+      transform: translateX(1);
     }
     to {
-      transform: translateX(calc(-100% - 1rem));
+      transform: translateX(calc(-100% - 2rem));
     }
   }
