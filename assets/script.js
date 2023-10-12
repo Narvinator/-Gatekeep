@@ -45,7 +45,7 @@ function init() {
         var code = parseRedirect();
 
         // set up queries for get req 
-        let url = `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURI(redirect_URI)}`
+        let url = `&grant_type=authorization_code&code=${code}&redirect_uri=${encodeURI(redirect_URI)}`
 
         // put all tog in req 
         getTokenRequest(url);
@@ -88,7 +88,7 @@ function getTokenRequest(url) {
     req.open("POST", token_url, true);
 
     // headers for post req
-    req.setRequestHeader("Authorization", `Basic ${btoa(`${client_id} : ${client_secret}`)}`);
+    req.setRequestHeader("Authorization", `Basic ${btoa(client_id + ":"  + client_secret)}`);
     req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     // send 
