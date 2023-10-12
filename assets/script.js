@@ -36,6 +36,8 @@ var redirectURL = "";
 const youtube_url = "https://www.googleapis.com/youtube/v3/search";
 const youtube_API_key = "AIzaSyBJtFp0GmTRzERQ9HotaSFepsZfwuDJ0OQ";
 
+const reg_youtube_url = "https://www.youtube.com/watch"
+
 var song_req = "";
 
 const song_title_1 = document.getElementById("song-title-1");
@@ -45,6 +47,10 @@ const song_title_3 = document.getElementById("song-title-3");
 const song_photo_1 = document.getElementById("song-album-1");
 const song_photo_2 = document.getElementById("song-album-2");
 const song_photo_3 = document.getElementById("song-album-3");
+
+const song_link_1 = document.getElementById("song-link-1");
+const song_link_2 = document.getElementById("song-link-2");
+const song_link_3 = document.getElementById("song-link-3");
 
 // init func
 function init() {
@@ -255,6 +261,8 @@ function checkUnreleasedResponse() {
         // console.log(videos.items[0].snippet.title);
         // getting title
         var name_one = videos.items[0].snippet.title;
+        var url_one = reg_youtube_url;
+        url_one += `?v=${videos.items[0].id.videoId}`
 
         //setting title
         song_title_1.innerText = name_one;
@@ -262,12 +270,16 @@ function checkUnreleasedResponse() {
         // setting img
         song_photo_1.innerHTML = `<img class="artist-photo" src="${videos.items[0].snippet.thumbnails.default.url}">`
 
+        song_link_1.href = url_one;
+
 
         // second video 
         // console.log(videos.items[1].id.videoId);
         // console.log(videos.items[1].snippet.title);
         // getting title
         var name_two = videos.items[1].snippet.title;
+        var url_two = reg_youtube_url;
+        url_two += `?v=${videos.items[1].id.videoId}`
 
         //setting title
         song_title_2.innerText = name_two;
@@ -275,18 +287,23 @@ function checkUnreleasedResponse() {
         // setting img
         song_photo_2.innerHTML = `<img class="artist-photo" src="${videos.items[1].snippet.thumbnails.default.url}">`
 
+        song_link_2.href = url_two;
 
         // third video 
         // console.log(videos.items[2].id.videoId);
         // console.log(videos.items[2].snippet.title);
         // getting title
         var name_three = videos.items[2].snippet.title;
+        var url_three = reg_youtube_url;
+        url_three += `?v=${videos.items[2].id.videoId}`
 
         //setting title
         song_title_3.innerText = name_three;
 
         // setting img
         song_photo_3.innerHTML = `<img class="artist-photo" src="${videos.items[2].snippet.thumbnails.default.url}">` 
+
+        song_link_3.href = url_three;
     } else {
         // bad req
         console.log("awww");
