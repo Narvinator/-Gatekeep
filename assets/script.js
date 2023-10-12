@@ -143,7 +143,7 @@ function checkTokenResponse() {
 // func to get top artist 
 function getTopArtist(token) {
 
-    console.log("we made it here");
+    //console.log("we made it here");
 
     // new xml req var
     var request = new XMLHttpRequest();
@@ -152,8 +152,10 @@ function getTopArtist(token) {
     request.open("GET", top_artist_url, true);
 
     //set headers for auth 
-    request.setRequestHeader("Authorization", `Bearer ${token}`);
+    request.setRequestHeader("Authorization", "Bearer " + token);
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    console.log(token);
 
     // check repsonses
     request.onload = checkArtistResponse;
@@ -161,10 +163,15 @@ function getTopArtist(token) {
 
 // func to check repsonse on api call
 function checkArtistResponse() {
+
+    // if successful call
     if(this.status == 200) {
+
+        // aprse data to get objects
         var top_artist = JSON.parse(this.responseText);
         console.log(top_artist);
     } else {
+        // bad req
         console.log(this.responseText);
     }
 }
