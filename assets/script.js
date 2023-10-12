@@ -1,6 +1,8 @@
 // mobile menu
 const burgerIcon = document.querySelector("#burger");
 const navbarMenu = document.querySelector("#nav-links");
+const artistPhoto = document.getElementById("artist-photo");
+const artistName = document.getElementById("artist-name");
 
 // burgerIcon.addEventListener('click', (event) => {
 //     navbarMenu.classList.toggle("is-active");
@@ -177,6 +179,10 @@ function checkArtistResponse() {
         top_artist.items.forEach(element => {
             console.log(element.name);
         });
+
+        artistPhoto.innerHTML = `<img class= "artist-photo" src="${top_artist.items[0].images[0].url}" alt="${top_artist.items[0].name} photo">`;
+
+        artistName.innerText = top_artist.items[0].name
     } else {
         // bad req
         console.log(this.responseText);
