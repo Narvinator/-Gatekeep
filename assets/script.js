@@ -30,11 +30,21 @@ const authorize_url = "https://accounts.spotify.com/authorize";
 const token_url = "https://accounts.spotify.com/api/token";
 const top_artist_url = "https://api.spotify.com/v1/me/top/artists?limit=3&offset=0";
 
+var redirectURL = "";
+
 // youtube
 const youtube_url = "https://www.googleapis.com/youtube/v3/search";
 const youtube_API_key = "AIzaSyBJtFp0GmTRzERQ9HotaSFepsZfwuDJ0OQ";
 
-var redirectURL = "";
+var song_req = "";
+
+const song_title_1 = document.getElementById("song-title-1");
+const song_title_2 = document.getElementById("song-title-2");
+const song_title_3 = document.getElementById("song-title-3");
+
+const song_photo_1 = document.getElementById("song-album-1");
+const song_photo_2 = document.getElementById("song-album-2");
+const song_photo_3 = document.getElementById("song-album-3");
 
 // init func
 function init() {
@@ -187,7 +197,7 @@ function checkArtistResponse() {
 
         // list out top 3 artist 
         top_artist.items.forEach(element => {
-            console.log(element.name);
+            //console.log(element.name);
         });
 
         // edit inner html to have img and put artist img with alt 
@@ -204,4 +214,81 @@ function checkArtistResponse() {
 }
 
 // youtube api
+function getUnreleased(artist) {
 
+    // made new xml var to handle get req
+    var req = new XMLHttpRequest();
+
+    // copy endpoint url
+    var search_url = youtube_url;
+
+    // build url to get top 3 unreleased search results from artist
+    search_url += "?part=snippet";
+    search_url += "&key=" + youtube_API_key;
+    search_url += "&type=video";
+    search_url += "&maxResults=3";
+    search_url += "&q=" + artist + " unreleased songs";
+
+    // opened get req using new url 
+    req.open("GET", search_url, true);
+    req.send(null);
+
+    // check repsonse 
+    req.onload = checkUnreleasedResponse;
+}
+
+// func to check response
+function checkUnreleasedResponse() {
+    // successful call
+    if(this.status == 200) {
+        //console.log(this.responseText);
+
+        //console.log("woohoo");\
+
+        // var to store data
+        var videos = JSON.parse(this.responseText);
+
+        // first video 
+        //console.log(videos.items[0].snippet.thumbnails.default.url);
+        //console.log(videos);
+        // console.log(videos.items[0].id.videoId);
+        // console.log(videos.items[0].snippet.title);
+        // getting title
+        var name_one = videos.items[0].snippet.title;
+
+        //setting title
+        song_title_1.innerText = name_one;
+
+        // setting img
+        song_photo_1.innerHTML = `<img class="artist-photo" src="${videos.items[0].snippet.thumbnails.default.url}">`
+
+
+        // second video 
+        // console.log(videos.items[1].id.videoId);
+        // console.log(videos.items[1].snippet.title);
+        // getting title
+        var name_two = videos.items[1].snippet.title;
+
+        //setting title
+        song_title_2.innerText = name_two;
+
+        // setting img
+        song_photo_2.innerHTML = `<img class="artist-photo" src="${videos.items[1].snippet.thumbnails.default.url}">`
+
+
+        // third video 
+        // console.log(videos.items[2].id.videoId);
+        // console.log(videos.items[2].snippet.title);
+        // getting title
+        var name_three = videos.items[2].snippet.title;
+
+        //setting title
+        song_title_3.innerText = name_three;
+
+        // setting img
+        song_photo_3.innerHTML = `<img class="artist-photo" src="${videos.items[2].snippet.thumbnails.default.url}">` 
+    } else {
+        // bad req
+        console.log("awww");
+    }
+}
