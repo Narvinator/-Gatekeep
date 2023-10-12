@@ -26,7 +26,7 @@ var redirectURL = "";
 // request auth func
 function requestAuthorization() {
 
-    console.log("clickkkk");
+    //console.log("clickkkk");
 
     // build url (add on parameters)
     let url = authorize_url;
@@ -45,7 +45,7 @@ function init() {
         var code = parseRedirect();
 
         // set up queries for get req 
-        let url = `&grant_type=authorization_code&code=${code}&redirect_uri=${encodeURI(redirect_URI)}`
+        let url = `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURI(redirect_URI)}`
 
         // put all tog in req 
         getTokenRequest(url);
@@ -72,7 +72,7 @@ function parseRedirect() {
     }
 
     // debug log
-    console.log(code);
+    //console.log(code);
 
     // return code 
     return code;
@@ -95,7 +95,7 @@ function getTokenRequest(url) {
     req.send(url);
 
     // debug log 
-    console.log(url);
+    //console.log(url);
 
     // feed response to check repsonse 
     req.onload = checkResponse;
