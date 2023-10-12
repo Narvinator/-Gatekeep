@@ -112,6 +112,12 @@ h2 {
   color: #33c583;
 }
 
+#rec {
+  color: white !important;
+  background-color: #0a0a0a !important;
+  padding: 0 !important;
+}
+
 /* media selectors */
 @keyframes scroll {
   from {
