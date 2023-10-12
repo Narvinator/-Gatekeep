@@ -22,7 +22,7 @@ localStorage.setItem("client_secret", client_secret);
 // const endpoints
 const authorize_url = "https://accounts.spotify.com/authorize";
 const token_url = "https://accounts.spotify.com/api/token";
-const top_artist_url = "https://api.spotify.com/v1/me/top";
+const top_artist_url = "https://api.spotify.com/v1/me/top/artists";
 
 var redirectURL = "";
 
@@ -49,7 +49,7 @@ function init() {
 
         // clean url after I get the code needed
         window.history.pushState("", "", redirect_URI);
-        
+
         // set up queries for get req 
         let url = `&grant_type=authorization_code&code=${code}&redirect_uri=${encodeURI(redirect_URI)}`
 
@@ -104,11 +104,11 @@ function getTokenRequest(url) {
     //console.log(url);
 
     // feed response to check repsonse 
-    req.onload = checkResponse;
+    req.onload = checkTokenResponse;
 }
 
 // func to check responses 
-function checkResponse() {
+function checkTokenResponse() {
 
     // successful req
     if (this.status == 200) {
@@ -132,7 +132,6 @@ function checkResponse() {
         }
 
         // get top artist 
-        var type = "artist"
         getTopArtist(access_token);
     }
     else {
@@ -142,9 +141,30 @@ function checkResponse() {
 }
 
 // func to get top artist 
-function getTopArtist(type) {
-    var req = new XMLHttpRequest();
-    req.open("GET", top_artist_url, true);
-    req.send(type)
+function getTopArtist(token) {
+
+    console.log("we made it here");
+
+    // new xml req var
+    var request = new XMLHttpRequest();
+
+    // open req
+    request.open("GET", top_artist_url, true);
+
+    //set headers for auth 
+    request.setRequestHeader("Authorization", `Bearer ${token}`);
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    // check repsonses
+    request.onload = checkArtistResponse;
 }
 
+// func to check repsonse on api call
+function checkArtistResponse() {
+    if(this.status == 200) {
+        var top_artist = JSON.parse(this.responseText);
+        console.log(top_artist);
+    } else {
+        console.log(this.responseText);
+    }
+}
