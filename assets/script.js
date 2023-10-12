@@ -116,9 +116,6 @@ function checkResponse() {
         // save tokens to storage 
         localStorage.setItem("access_token", access_token);
         localStorage.setItem("refresh_token", refresh_token);
-
-        // refresh at init 
-        init();
     }
     else {
         // bad req 
