@@ -3,6 +3,10 @@ body {
   background-color: black;
 }
 
+h2 {
+  font-size: 2rem;
+}
+
 /* class selectors */
 .bulma-overlay-mixin {
   @include overlay(1.5rem);
