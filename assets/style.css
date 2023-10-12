@@ -1,7 +1,9 @@
+/* element selectors */
 body {
   background-color: black;
 }
 
+/* class selectors */
 .bulma-overlay-mixin {
   @include overlay(1.5rem);
   background-color: darkorange;
@@ -9,6 +11,10 @@ body {
   color: white;
   opacity: 0.9;
   padding: 1em;
+}
+
+.artist-photo {
+  width: 100%
 }
 
 .button:hover {
@@ -79,12 +85,6 @@ body {
   margin-bottom: 1.2rem;
 }
 
-@media (max-width: 1024px) {
-  .marquee-wrapper {
-    overflow: auto;
-  }
-}
-
 .scrollingX {
   animation: scroll 45s linear infinite;
 }
@@ -93,6 +93,14 @@ body {
   animation-play-state: paused;
 }
 
+/* id selectors */
+#artist-name {
+  text-align: center;
+  font-size: 2rem;
+  color: #33c583;
+}
+
+/* media selectors */
 @keyframes scroll {
   from {
     transform: translateX(0);
@@ -100,5 +108,11 @@ body {
 
   to {
     transform: translateX(calc(-100% - 1rem));
+  }
+}
+
+@media (max-width: 1024px) {
+  .marquee-wrapper {
+    overflow: auto;
   }
 }

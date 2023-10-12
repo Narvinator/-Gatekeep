@@ -180,7 +180,7 @@ function checkArtistResponse() {
             console.log(element.name);
         });
 
-        artistPhoto.innerHTML = `<img class= "artist-photo" src="${top_artist.items[0].images[0].url}" alt="${top_artist.items[0].name} photo">`;
+        artistPhoto.innerHTML = `<img class="artist-photo" src="${top_artist.items[0].images[0].url}" alt="${top_artist.items[0].name} photo">`;
 
         artistName.innerText = top_artist.items[0].name
     } else {
