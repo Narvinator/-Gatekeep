@@ -29,20 +29,10 @@ const authorize_url = "https://accounts.spotify.com/authorize";
 const token_url = "https://accounts.spotify.com/api/token";
 const top_artist_url = "https://api.spotify.com/v1/me/top/artists?limit=3&offset=0";
 
+
+const youtube_API_key = "AIzaSyBJtFp0GmTRzERQ9HotaSFepsZfwuDJ0OQ";
+
 var redirectURL = "";
-
-// request auth func
-function requestAuthorization() {
-
-    //console.log("clickkkk");
-
-    // build url (add on parameters)
-    let url = authorize_url;
-    url += `?client_id=${client_id}&response_type=code&redirect_uri=${encodeURI(redirect_URI)}&show_dialog=true&scope=user-top-read`
-
-    // assign ref link to url
-    window.location.href = url;
-}
 
 // init func
 function init() {
@@ -61,6 +51,21 @@ function init() {
         // put all tog in req 
         getTokenRequest(url);
     }
+}
+
+// spotify api 
+
+// request auth func
+function requestAuthorization() {
+
+    //console.log("clickkkk");
+
+    // build url (add on parameters)
+    let url = authorize_url;
+    url += `?client_id=${client_id}&response_type=code&redirect_uri=${encodeURI(redirect_URI)}&show_dialog=true&scope=user-top-read`
+
+    // assign ref link to url
+    window.location.href = url;
 }
 
 // func to parse redirect url and get code 
@@ -193,3 +198,6 @@ function checkArtistResponse() {
         console.log(this.responseText);
     }
 }
+
+// youtube api
+
