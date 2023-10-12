@@ -249,7 +249,7 @@ function checkUnreleasedResponse() {
     if(this.status == 200) {
         //console.log(this.responseText);
 
-        //console.log("woohoo");\
+        //console.log("woohoo");
 
         // var to store data
         var videos = JSON.parse(this.responseText);
@@ -268,7 +268,7 @@ function checkUnreleasedResponse() {
         song_title_1.innerText = name_one;
 
         // setting img
-        song_photo_1.innerHTML = `<img class="artist-photo" src="${videos.items[0].snippet.thumbnails.default.url}">`
+        song_photo_1.innerHTML = `<img class="artist-photo" src="${videos.items[0].snippet.thumbnails.default.url}" alt="${name_one} song cover">`
 
         song_link_1.href = url_one;
 
@@ -285,7 +285,7 @@ function checkUnreleasedResponse() {
         song_title_2.innerText = name_two;
 
         // setting img
-        song_photo_2.innerHTML = `<img class="artist-photo" src="${videos.items[1].snippet.thumbnails.default.url}">`
+        song_photo_2.innerHTML = `<img class="artist-photo" src="${videos.items[1].snippet.thumbnails.default.url}" alt="${name_two} song cover">`
 
         song_link_2.href = url_two;
 
@@ -301,7 +301,7 @@ function checkUnreleasedResponse() {
         song_title_3.innerText = name_three;
 
         // setting img
-        song_photo_3.innerHTML = `<img class="artist-photo" src="${videos.items[2].snippet.thumbnails.default.url}">` 
+        song_photo_3.innerHTML = `<img class="artist-photo" src="${videos.items[2].snippet.thumbnails.default.url}" alt="${name_three} song cover">` 
 
         song_link_3.href = url_three;
     } else {

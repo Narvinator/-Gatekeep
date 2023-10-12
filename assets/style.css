@@ -3,6 +3,14 @@ body {
   background-color: black;
 }
 
+h2 {
+  font-size: 2.25rem;
+}
+
+.content h4 {
+  margin-bottom: .5rem;
+}
+
 /* class selectors */
 .bulma-overlay-mixin {
   @include overlay(1.5rem);
@@ -93,11 +101,23 @@ body {
   animation-play-state: paused;
 }
 
+.box {
+  padding: .7rem;
+}
+
 /* id selectors */
 #artist-name {
   text-align: center;
   font-size: 2rem;
   color: #33c583;
+}
+
+#rec {
+  text-align: center;
+  color: white !important;
+  background-color: #0a0a0a !important;
+  padding-top: 1.4rem !important;
+  padding-bottom: 0 !important;
 }
 
 /* media selectors */
