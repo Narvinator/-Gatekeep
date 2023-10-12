@@ -75,4 +75,27 @@ function parseRedirect() {
     return code;
 }
 
+// func to handle req
+function getTokenRequest(url) {
+
+    // xmlhttp var 
+    var req = new XMLHttpRequest();
+
+    // open req 
+    req.open("POST", token_url, false);
+
+    // headers for post req
+    req.setRequestHeader("Authorization", `Basic ${btoa(`${client_id} : ${client_secret}`)}`);
+    req.setRequestHeader("Content-Type", "/x-www-form-urlencoded");
+
+    // send 
+    req.send(url);
+
+    // debug log 
+    console.log(url);
+
+    // feed response to check repsonse 
+    req.onload = checkResponse;
+}
+
 
