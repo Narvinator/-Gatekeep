@@ -16,6 +16,9 @@ var redirect_URI = "http://127.0.0.1:5500/index.html";
 var client_id = "a6e8b54904ef4eba84907002452c0ba0";
 var client_secret = "65c09d5e68ca4d0a8439a607c8b7e44c";
 
+localStorage.setItem("client_id", client_id);
+localStorage.setItem("client_secret", client_secret);
+
 // const endpoints
 const authorize_url = "https://accounts.spotify.com/authorize";
 const token_url = "https://accounts.spotify.com/api/token";
@@ -114,15 +117,26 @@ function checkResponse() {
         // set new tokens 
         access_token = token_info.access_token;
         refresh_token = token_info.refresh_token;
+        expiresIn = token_info.expires_in;
 
         // save tokens to storage 
         localStorage.setItem("access_token", access_token);
         localStorage.setItem("refresh_token", refresh_token);
+
+        //check if token expired
+        if(expiresIn < 0){
+            access_token = refresh_token;
+        }
+
+        // get top artist 
+        getTopArtist(access_token);
     }
     else {
         // bad req 
         console.log(this.responseText);
     }
 }
+
+// func to get top artist 
 
 
