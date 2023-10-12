@@ -1,82 +1,118 @@
+/* element selectors */
 body {
-    background-color: black;
+  background-color: black;
 }
+
+/* class selectors */
 .bulma-overlay-mixin {
-    @include overlay(1.5rem);
-    background-color: darkorange;
-    border-radius: 0.25em;
-    color: white;
-    opacity: 0.9;
-    padding: 1em;
-  }
+  @include overlay(1.5rem);
+  background-color: darkorange;
+  border-radius: 0.25em;
+  color: white;
+  opacity: 0.9;
+  padding: 1em;
+}
+
+.artist-photo {
+  width: 100%
+}
+
+.button:hover {
+  background-color: #33c583;
+  transform: translateY(-.09rem);
+}
 
 .hero {
-    background-image: url(./hero-image.jpg)
+  background-image: url(./hero-image.jpg)
+}
+
+.blur {
+  position: relative;
+  box-shadow: 0 0 6px 5px #33c583;
 }
 
 .marquee-wrapper {
-    position: relative;
-    display: flex;
-    overflow: hidden;
-    gap: 1rem;
-    border-radius: 1rem;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  gap: 1rem;
+  border-radius: 1rem;
+}
+
+.marquee-wrapper .marquee-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 1rem;
+  cursor: grab;
+}
+
+.marquee-wrapper .marquee-content .card-testimonial {
+  max-width: 400px;
+  background-color: #333;
+  padding: 1rem;
+  border-radius: 1rem;
+  color: #f5f5f5;
+}
+
+.marquee-wrapper .marquee-content .card-testimonial article picture {
+  position: relative;
+  min-width: 200px;
+}
+
+.marquee-wrapper .marquee-content .card-testimonial article picture img {
+  width: 100%;
+  height: 340px;
+  border-radius: 0.5rem;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: 50% 15%;
+  object-position: 50% 15%;
+}
+
+.marquee-wrapper .marquee-content .card-testimonial article h4 {
+  font-size: 20px;
+  text-transform: capitalize;
+  margin-block: 1rem;
+}
+
+.marquee-wrapper .marquee-content .card-testimonial article article.short-description p {
+  font-family: var(--ff-heading);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  margin-bottom: 1.2rem;
+}
+
+.scrollingX {
+  animation: scroll 45s linear infinite;
+}
+
+.marquee-wrapper:hover .scrollingX {
+  animation-play-state: paused;
+}
+
+/* id selectors */
+#artist-name {
+  text-align: center;
+  font-size: 2rem;
+  color: #33c583;
+}
+
+/* media selectors */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
   }
-  .marquee-wrapper .marquee-content {
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    gap: 1rem;
-    cursor: grab;
+
+  to {
+    transform: translateX(calc(-100% - 1rem));
   }
-  .marquee-wrapper .marquee-content .card-testimonial {
-    max-width: 400px;
-    background-color: #333;
-    padding: 1rem;
-    border-radius: 1rem;
-    color: #f5f5f5;
+}
+
+@media (max-width: 1024px) {
+  .marquee-wrapper {
+    overflow: auto;
   }
-  .marquee-wrapper .marquee-content .card-testimonial article picture {
-    position: relative;
-    min-width: 200px;
-  }
-  .marquee-wrapper .marquee-content .card-testimonial article picture img {
-    width: 100%;
-    height: 340px;
-    border-radius: 0.5rem;
-    -o-object-fit: cover;
-    object-fit: cover;
-    -o-object-position: 50% 15%;
-    object-position: 50% 15%;
-  }
-  .marquee-wrapper .marquee-content .card-testimonial article h4 {
-    font-size: 20px;
-    text-transform: capitalize;
-    margin-block: 1rem;
-  }
-  .marquee-wrapper .marquee-content .card-testimonial article article.short-description p {
-    font-family: var(--ff-heading);
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 20px;
-    margin-bottom: 1.2rem;
-  }
-  @media (max-width: 1024px) {
-    .marquee-wrapper {
-      overflow: auto;
-    }
-  }
-  .scrollingX {
-    animation: scroll 45s linear infinite;
-  }
-  .marquee-wrapper:hover .scrollingX {
-    animation-play-state: paused;
-  }
-  @keyframes scroll {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(calc(-100% - 1rem));
-    }
-  }
+}
