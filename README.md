@@ -1,5 +1,6 @@
 # -Gatekeep
-![For project](https://github.com/Narvinator/-Gatekeep/assets/144052327/ea116b73-7a87-42c4-9659-f6dbd71111e4)
+![image](https://github.com/Narvinator/-Gatekeep/assets/92743791/1218fab6-fceb-46fb-82b9-493c5a5968b8)
+
 
 
 ## Description
